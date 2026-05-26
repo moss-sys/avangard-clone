@@ -36,7 +36,7 @@
   try {
     var saved = localStorage.getItem(STORAGE_KEY);
     if (saved) messages = JSON.parse(saved);
-  } catch (e) {}
+  } catch (_) {}
 
   // ── Shared state (используется инлайн-блоком и виджетом) ─────────────────
   function notifyAll() {
@@ -46,7 +46,7 @@
   }
 
   function saveHistory() {
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(messages)); } catch (e) {}
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(messages)); } catch (_) {}
   }
 
   async function sendMessageShared(text) {
@@ -76,7 +76,7 @@
 
       messages.push({ role: "assistant", content: reply });
       saveHistory();
-    } catch (err) {
+    } catch (_) {
       messages.push({ role: "assistant", content: "Ошибка соединения. Попробуйте позже." });
     }
 
