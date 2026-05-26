@@ -20,7 +20,7 @@ export default function RootLayout({
         <Script id="aim-config" strategy="beforeInteractive">
           {`window.AIManagerConfig = { token: "avangard-demo" };`}
         </Script>
-        <Script src="/widget.js" strategy="afterInteractive" />
+        <Script src="/avangard-clone/widget.js" strategy="afterInteractive" />
       </body>
     </html>
   );
