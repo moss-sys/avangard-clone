@@ -30,7 +30,7 @@ export function AIChatBlock() {
   const [msgs, setMsgs] = useState<Msg[]>([]);
   const [isTyping, setIsTyping] = useState(false);
   const [input, setInput] = useState("");
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   // Синхронизация с виджетом через общий канал событий
@@ -57,7 +57,8 @@ export function AIChatBlock() {
   }, []);
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    const el = messagesContainerRef.current;
+    if (el) el.scrollTop = el.scrollHeight;
   }, [msgs, isTyping]);
 
   const handleSend = () => {
@@ -133,7 +134,7 @@ export function AIChatBlock() {
           </div>
 
           {/* Сообщения */}
-          <div style={{
+          <div ref={messagesContainerRef} style={{
             padding: "16px",
             minHeight: "220px",
             maxHeight: "340px",
@@ -172,7 +173,6 @@ export function AIChatBlock() {
                 Печатает...
               </div>
             )}
-            <div ref={messagesEndRef} />
           </div>
 
           {/* Ввод */}
