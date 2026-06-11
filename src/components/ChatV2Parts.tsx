@@ -217,8 +217,9 @@ export function KPForm() {
   );
 }
 
-/** Общая лента сообщений (для блока на странице и плавающего окна). */
-export function MessagesV2({ compact }: { compact?: boolean }) {
+/** Общая лента сообщений (для блока на странице и плавающего окна).
+ *  fill — занять всю высоту контейнера (плавающее окно); иначе ограничение для блока на странице. */
+export function MessagesV2({ compact, fill }: { compact?: boolean; fill?: boolean }) {
   const { msgs, isTyping, kpCard } = useChatV2();
   const boxRef = useRef<HTMLDivElement>(null);
 
@@ -235,8 +236,8 @@ export function MessagesV2({ compact }: { compact?: boolean }) {
       style={{
         padding: compact ? "12px" : "16px",
         flex: 1,
-        minHeight: compact ? undefined : "260px",
-        maxHeight: compact ? undefined : "560px",
+        minHeight: fill ? 0 : "260px",
+        maxHeight: fill ? undefined : "560px",
         overflowY: "auto",
         display: "flex",
         flexDirection: "column",

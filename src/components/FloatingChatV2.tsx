@@ -15,12 +15,12 @@ export function FloatingChatV2() {
           style={{
             position: "fixed",
             bottom: 92,
-            right: 24,
-            width: "min(390px, calc(100vw - 16px))",
-            height: "min(580px, calc(100vh - 120px))",
+            right: 16,
+            width: "min(520px, calc(100vw - 16px))",
+            height: "min(860px, calc(100vh - 110px))",
             background: "#fff",
-            borderRadius: 12,
-            boxShadow: "0 8px 32px rgba(0,0,0,.18)",
+            borderRadius: 16,
+            boxShadow: "0 12px 48px rgba(0,0,0,.22)",
             display: "flex",
             flexDirection: "column",
             zIndex: 99999,
@@ -48,7 +48,7 @@ export function FloatingChatV2() {
           </div>
 
           {/* Лента (общий диалог со страничным блоком) */}
-          <MessagesV2 compact />
+          <MessagesV2 fill />
 
           {/* Ввод */}
           <InputV2 placeholder="Задайте вопрос..." />
