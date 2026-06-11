@@ -1,7 +1,7 @@
 import { TopNavBar } from "@/components/TopNavBar";
 import { MainHeader } from "@/components/MainHeader";
 import { HeroSlider } from "@/components/HeroSlider";
-import { AIChatBlock } from "@/components/AIChatBlock";
+import { AIChatBlockV2 } from "@/components/AIChatBlockV2";
 import { CategoryGrid } from "@/components/CategoryGrid";
 import { CTAButtonsRow } from "@/components/CTAButtonsRow";
 import { PromoBanners } from "@/components/PromoBanners";
@@ -10,17 +10,19 @@ import { NewsSection } from "@/components/NewsSection";
 import { ReviewsSection } from "@/components/ReviewsSection";
 import { NewsletterSection } from "@/components/NewsletterSection";
 import { Footer } from "@/components/Footer";
-import { WidgetV1Loader } from "@/components/WidgetV1Loader";
 
-export default function Home() {
+export const metadata = {
+  title: "Рабочая одежда — AI-подбор спецодежды с ценами по городам | Авангард",
+};
+
+export default function HomeV2() {
   return (
     <>
-      <WidgetV1Loader />
       <TopNavBar />
       <MainHeader />
       <main>
         <HeroSlider />
-        <AIChatBlock />
+        <AIChatBlockV2 />
         <CategoryGrid />
         <CTAButtonsRow />
         <PromoBanners />

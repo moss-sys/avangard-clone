@@ -28,7 +28,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build --webpack && node scripts/fix-paths.mjs",
+    "build": "next build --webpack && node scripts/fix-paths.mjs && node scripts/v2-dir.mjs",
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
