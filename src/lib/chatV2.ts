@@ -50,7 +50,7 @@ function set(partial: Partial<ChatState>) {
 const sessionId = "land-v2-" + Math.random().toString(36).slice(2);
 let shown: string[] = [];
 
-async function send(text: string) {
+async function send(text: string, detailArticle?: string | null) {
   const t = text.trim();
   if (!t || state.isTyping) return;
   const isMore = /^показать ещ/i.test(t);
@@ -71,6 +71,7 @@ async function send(text: string) {
         project_id: PROJECT_ID,
         session_id: sessionId,
         exclude: isMore ? shown : undefined,
+        detail_article: detailArticle || undefined,
         messages: history,
       }),
     });
@@ -111,7 +112,9 @@ export const chatV2 = {
       listeners.delete(fn);
     };
   },
-  send,
+  send: (text: string) => send(text),
+  /** «Подробнее» по товару: описание + все характеристики с сайта */
+  sendDetail: (card: Card) => send(`Подробнее: ${card.name}`, card.article),
   openKP: (card: Card) => set({ kpCard: card }),
   closeKP: () => set({ kpCard: null }),
   sessionId,

@@ -71,7 +71,14 @@ export function ProductCard({ c, compact }: { c: Card; compact?: boolean }) {
   const params = Object.entries(c.params ?? {}).filter(([, v]) => v);
   const cur = c.currency ?? "₽";
   return (
-    <div style={{ display: "flex", gap: 10, border: "1px solid #e8eaf2", borderRadius: 12, padding: 10, background: "#fff", maxWidth: "97%" }}>
+    <div
+      onClick={() => window.open(c.url, "_blank", "noopener")}
+      role="link"
+      title="Открыть страницу товара"
+      style={{ display: "flex", gap: 10, border: "1px solid #e8eaf2", borderRadius: 12, padding: 10, background: "#fff", maxWidth: "97%", cursor: "pointer", transition: "box-shadow .15s" }}
+      onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 3px 14px rgba(44,62,111,.14)")}
+      onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}
+    >
       {c.image ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img src={c.image} alt={c.name} style={{ width: compact ? 62 : 84, height: compact ? 80 : 106, objectFit: "cover", borderRadius: 8, background: "#f5f5f5", flexShrink: 0 }} />
@@ -103,16 +110,14 @@ export function ProductCard({ c, compact }: { c: Card; compact?: boolean }) {
           </div>
         )}
         <div style={{ display: "flex", gap: 7, flexWrap: "wrap", marginTop: compact ? 4 : 0 }}>
-          <a
-            href={c.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ padding: "5px 12px", borderRadius: 7, background: NAVY, color: "#fff", fontSize: 12, textDecoration: "none", fontWeight: 600 }}
-          >
-            Смотреть на сайте
-          </a>
           <button
-            onClick={() => chatV2.openKP(c)}
+            onClick={(e) => { e.stopPropagation(); chatV2.sendDetail(c); }}
+            style={{ padding: "5px 12px", borderRadius: 7, background: NAVY, color: "#fff", border: "none", fontSize: 12, cursor: "pointer", fontWeight: 600, fontFamily: FONT }}
+          >
+            Подробнее
+          </button>
+          <button
+            onClick={(e) => { e.stopPropagation(); chatV2.openKP(c); }}
             style={{ padding: "5px 12px", borderRadius: 7, border: `1px solid ${NAVY}`, background: "transparent", color: NAVY, fontSize: 12, cursor: "pointer", fontFamily: FONT }}
           >
             Запросить КП
