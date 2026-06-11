@@ -2,6 +2,7 @@ import { TopNavBar } from "@/components/TopNavBar";
 import { MainHeader } from "@/components/MainHeader";
 import { HeroSlider } from "@/components/HeroSlider";
 import { AIChatBlockV2 } from "@/components/AIChatBlockV2";
+import { FloatingChatV2 } from "@/components/FloatingChatV2";
 import { CategoryGrid } from "@/components/CategoryGrid";
 import { CTAButtonsRow } from "@/components/CTAButtonsRow";
 import { PromoBanners } from "@/components/PromoBanners";
@@ -18,6 +19,7 @@ export const metadata = {
 export default function HomeV2() {
   return (
     <>
+      <FloatingChatV2 />
       <TopNavBar />
       <MainHeader />
       <main>
